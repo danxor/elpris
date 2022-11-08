@@ -1,5 +1,5 @@
 <template>
-    <div id="chart-box">
+    <div id="daily-view">
         <highcharts class="hc" :options="chartOptions" ref="chart"></highcharts>
     </div>
 </template>
@@ -59,8 +59,6 @@
             async fillData() {
                 await axios.get('/data/daily.json')
                         .then((response) => {
-                            console.log(response.data);
-
                             this.chartOptions.plotOptions.spline.pointInterval = response.data.pointInterval;
                             this.chartOptions.plotOptions.spline.pointStart = Date.parse(response.data.pointStart);
 
@@ -80,7 +78,7 @@
 </script>
 
 <style scoped>
-    #chart-box {
+    #daily-view {
         width: 90%;
         height: 25%;
         margin: 0 auto;
